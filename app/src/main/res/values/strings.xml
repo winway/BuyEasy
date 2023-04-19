@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">BuyEasy</string>
     <string name="daily_necessities">日常用品</string>
+    <string name="click_to_search">点击搜索</string>
+    <string name="price_order">价格排序</string>
+    <string name="show_list">列表展示</string>
+    <string name="show_grid">网格展示</string>
 </resources>

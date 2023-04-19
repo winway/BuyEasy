@@ -1,7 +1,10 @@
 package com.example.buyeasy;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -42,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
 
         setupTitleView();
 
+        mKindLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = GoodsListActivity.newIntent(MainActivity.this, mKindListAdapterData.get(i));
+                startActivity(intent);
+            }
+        });
+
         initKindListAdapter();
     }
 
@@ -55,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         mTitleTV.setBackgroundResource(R.color.red);
         mTitleTV.setTitleText("日常用品");
         mTitleTV.setTitleTextColor(Color.WHITE);
-        mTitleTV.setLeftImageVisibility(true);
         mTitleTV.setRightImageVisibility(false);
         mTitleTV.setLeftImageResource(R.mipmap.icon_back);
 
