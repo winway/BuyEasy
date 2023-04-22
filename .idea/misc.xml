@@ -3,10 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/BuyEasy/app/src/main/res/drawable/button_goods_list_buy_background.xml" value="0.15" />
+        <entry key="..\:/AndroidStudioProjects/BuyEasy/app/src/main/res/drawable/button_quantity_modifier_background.xml" value="0.15" />
         <entry key="..\:/AndroidStudioProjects/BuyEasy/app/src/main/res/drawable/xxx.xml" value="0.15" />
         <entry key="..\:/AndroidStudioProjects/BuyEasy/app/src/main/res/layout/activity_goods.xml" value="0.24947916666666667" />
+        <entry key="..\:/AndroidStudioProjects/BuyEasy/app/src/main/res/layout/activity_goods_list.xml" value="0.24947916666666667" />
         <entry key="..\:/AndroidStudioProjects/BuyEasy/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/BuyEasy/app/src/main/res/layout/item_gv_goods_list.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/BuyEasy/app/src/main/res/layout/item_lv_goods_list.xml" value="0.2484375" />
         <entry key="..\:/AndroidStudioProjects/BuyEasy/app/src/main/res/layout/item_lv_main_kind.xml" value="0.2484375" />
+        <entry key="..\:/AndroidStudioProjects/BuyEasy/app/src/main/res/layout/layout_set_quantity.xml" value="0.2484375" />
+        <entry key="..\:/AndroidStudioProjects/BuyEasy/app/src/main/res/layout/view_quantity_modifier.xml" value="0.24947916666666667" />
         <entry key="..\:/AndroidStudioProjects/BuyEasy/app/src/main/res/layout/view_tile.xml" value="0.24947916666666667" />
         <entry key="..\:/AndroidStudioProjects/BuyEasy/app/src/main/res/layout/view_title.xml" value="0.24947916666666667" />
       </map>

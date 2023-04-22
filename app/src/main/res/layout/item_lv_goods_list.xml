@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/item_lv_goods_list_picture_iv"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/item_lv_goods_list_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/item_lv_goods_list_picture_iv"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@id/item_lv_goods_list_picture_iv"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        tools:text="可口可乐" />
+
+    <TextView
+        android:id="@+id/item_lv_goods_list_kind_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_lv_goods_list_name_tv"
+        android:layout_alignStart="@id/item_lv_goods_list_name_tv"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        tools:text="饮料" />
+
+    <com.example.buyeasy.view.QuantityModifierView
+        android:id="@+id/item_lv_goods_list_quantity_qmv"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/item_lv_goods_list_price_tv"
+        android:layout_below="@id/item_lv_goods_list_kind_tv"
+        android:layout_alignStart="@id/item_lv_goods_list_name_tv"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:id="@+id/item_lv_goods_list_price_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/item_lv_goods_list_name_tv"
+        android:layout_alignBottom="@id/item_lv_goods_list_picture_iv"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="¥ 12" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/item_lv_goods_list_buy_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/item_lv_goods_list_picture_iv"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/button_goods_list_buy_background"
+        android:text="购买"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/item_lv_goods_list_delete_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/icon_laji"
+        android:visibility="gone" />
+
+</RelativeLayout>

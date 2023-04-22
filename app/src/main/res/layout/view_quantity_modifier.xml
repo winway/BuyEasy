@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:showDividers="none">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/quantity_modifier_reduce_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:background="@drawable/button_quantity_modifier_background"
+        android:text="-"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/quantity_modifier_quantity_et"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="@drawable/button_quantity_modifier_background"
+        android:gravity="center"
+        android:inputType="number"
+        tools:text="1" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/quantity_modifier_increase_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:background="@drawable/button_quantity_modifier_background"
+        android:text="+"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
