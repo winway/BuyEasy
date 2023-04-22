@@ -45,8 +45,11 @@
             android:id="@+id/goods_list_show_format_sp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:layout_weight="1"
+            android:background="@drawable/button_goods_list_control_background"
             android:dropDownWidth="match_parent"
+            android:gravity="center"
             android:overlapAnchor="false"
             android:spinnerMode="dropdown" />
 

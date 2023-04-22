@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -11,7 +14,14 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.buyeasy.adapter.GoodsGridAdapter;
+import com.example.buyeasy.adapter.GoodsListAdapter;
+import com.example.buyeasy.bean.GoodsBean;
+import com.example.buyeasy.bean.GoodsData;
 import com.example.buyeasy.view.TitleView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GoodsListActivity extends AppCompatActivity {
 
@@ -23,6 +33,10 @@ public class GoodsListActivity extends AppCompatActivity {
     private Spinner mShowFormatSP;
     private ListView mGoodsLV;
     private GridView mGoodsGV;
+
+    private GoodsListAdapter mGoodsListAdapter;
+    private GoodsGridAdapter mGoodsGridAdapter;
+    private List<GoodsBean> mGoodsAdapterData;
 
     private String mKind;
 
@@ -40,6 +54,32 @@ public class GoodsListActivity extends AppCompatActivity {
         mKind = getIntent().getStringExtra(ARG_KIND);
 
         initView();
+
+        initGoodsAdapter();
+
+        refreshGoodsAdapter();
+    }
+
+    private void refreshGoodsAdapter() {
+        mGoodsAdapterData.clear();
+        for (int i = 0; i < GoodsData.goodsDataList.size(); i++) {
+            GoodsBean goodsBean = GoodsData.goodsDataList.get(i);
+            if (goodsBean.getKind().equals(mKind)) {
+                mGoodsAdapterData.add(goodsBean);
+            }
+        }
+        mGoodsListAdapter.notifyDataSetChanged();
+        mGoodsGridAdapter.notifyDataSetChanged();
+    }
+
+    private void initGoodsAdapter() {
+        mGoodsAdapterData = new ArrayList<>();
+
+        mGoodsListAdapter = new GoodsListAdapter(this, mGoodsAdapterData);
+        mGoodsLV.setAdapter(mGoodsListAdapter);
+
+        mGoodsGridAdapter = new GoodsGridAdapter(this, mGoodsAdapterData);
+        mGoodsGV.setAdapter(mGoodsGridAdapter);
     }
 
     private void initView() {
@@ -51,6 +91,34 @@ public class GoodsListActivity extends AppCompatActivity {
         mGoodsGV = findViewById(R.id.goods_list_gv);
 
         setupTitleView();
+
+        setupShowFormatSpinner();
+    }
+
+    private void setupShowFormatSpinner() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new String[]{"列表展示", "网格展示"});
+        mShowFormatSP.setAdapter(adapter);
+
+        mShowFormatSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+                        mGoodsLV.setVisibility(View.VISIBLE);
+                        mGoodsGV.setVisibility(View.GONE);
+                        break;
+                    case 1:
+                        mGoodsLV.setVisibility(View.GONE);
+                        mGoodsGV.setVisibility(View.VISIBLE);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     private void setupTitleView() {
