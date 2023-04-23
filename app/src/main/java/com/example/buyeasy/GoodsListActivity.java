@@ -21,9 +21,11 @@ import com.example.buyeasy.bean.GoodsData;
 import com.example.buyeasy.view.TitleView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-public class GoodsListActivity extends AppCompatActivity {
+public class GoodsListActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String ARG_KIND = "kind";
 
@@ -39,6 +41,7 @@ public class GoodsListActivity extends AppCompatActivity {
     private List<GoodsBean> mGoodsAdapterData;
 
     private String mKind;
+    private int mSortOrder = 1;
 
     public static Intent newIntent(Context context, String kind) {
         Intent intent = new Intent(context, GoodsListActivity.class);
@@ -93,6 +96,9 @@ public class GoodsListActivity extends AppCompatActivity {
         setupTitleView();
 
         setupShowFormatSpinner();
+
+        mSearchBTN.setOnClickListener(this);
+        mSortBTN.setOnClickListener(this);
     }
 
     private void setupShowFormatSpinner() {
@@ -141,5 +147,36 @@ public class GoodsListActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.goods_list_search_btn:
+                break;
+            case R.id.goods_list_sort_btn:
+                sort();
+                break;
+        }
+    }
+
+    private void sort() {
+        mSortOrder = mSortOrder * -1;
+
+        Collections.sort(mGoodsAdapterData, new Comparator<GoodsBean>() {
+            @Override
+            public int compare(GoodsBean t1, GoodsBean t2) {
+                if (t1.getPrice() > t2.getPrice()) {
+                    return 1 * mSortOrder;
+                } else if (t1.getPrice() < t2.getPrice()) {
+                    return -1 * mSortOrder;
+                } else {
+                    return 0;
+                }
+            }
+        });
+
+        mGoodsListAdapter.notifyDataSetChanged();
+        mGoodsGridAdapter.notifyDataSetChanged();
     }
 }

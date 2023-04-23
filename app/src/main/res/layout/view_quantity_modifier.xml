@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -24,7 +23,7 @@
         android:background="@drawable/button_quantity_modifier_background"
         android:gravity="center"
         android:inputType="number"
-        tools:text="1" />
+        android:text="1" />
 
 
     <androidx.appcompat.widget.AppCompatButton

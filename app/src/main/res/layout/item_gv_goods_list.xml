@@ -37,8 +37,8 @@
 
     <com.example.buyeasy.view.QuantityModifierView
         android:id="@+id/item_gv_goods_list_quantity_qmv"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
         android:layout_below="@id/item_gv_goods_list_price_tv"
         android:layout_alignStart="@id/item_gv_goods_list_name_tv"
         android:layout_marginTop="10dp" />

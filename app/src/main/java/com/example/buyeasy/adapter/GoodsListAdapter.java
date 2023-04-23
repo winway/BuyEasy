@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.buyeasy.R;
 import com.example.buyeasy.bean.GoodsBean;
+import com.example.buyeasy.bean.GoodsData;
 import com.example.buyeasy.view.QuantityModifierView;
 import com.squareup.picasso.Picasso;
 
@@ -63,6 +64,20 @@ public class GoodsListAdapter extends BaseAdapter {
         holder.mKindTV.setText(goodsBean.getKind());
         holder.mPriceTV.setText("¥ " + goodsBean.getPrice());
         Picasso.with(mContext).load(goodsBean.getPic()).into(holder.mPictureIV);
+        holder.mQuantityQMV.setStock(goodsBean.getCount());
+
+        ViewHolder finalHolder = holder;
+        holder.mBuyBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int quantity = finalHolder.mQuantityQMV.getQuantity();
+                GoodsBean goodsBeanCopy = GoodsBean.copy(goodsBean);
+                goodsBeanCopy.setBuycount(quantity);
+                GoodsData.addGoodsToBuyList(goodsBeanCopy);
+
+                GoodsData.printBuyList();
+            }
+        });
 
         return view;
     }

@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GoodsData {
+    private static final String TAG = "GoodsData";
+
     public static List<String> dailyKindList
             = Arrays.asList(new String[]{"调料干货", "零食", "饮料", "烟酒", "厨房用品", "日用品", "清洁用品", "洗化用品"});
     // 商品集合
@@ -68,8 +70,8 @@ public class GoodsData {
         for (int i = 0; i < buyList.size(); i++) {
             GoodsBean buyBean = buyList.get(i);
             if (buyBean.getTitle().equals(bean.getTitle())) {
-                int buycount = bean.getBuycount();
-                buyBean.setBuycount(buyBean.getBuycount() + buycount);
+                int buyCount = bean.getBuycount();
+                buyBean.setBuycount(buyBean.getBuycount() + buyCount);
                 flag = false;
                 break;
             }
@@ -80,12 +82,12 @@ public class GoodsData {
     }
 
     public static void printBuyList() {
-        Log.i("lsh", "printBuyList: size====" + buyList.size());
+        Log.i(TAG, "printBuyList: " + buyList.size());
         String msg = "";
         for (int i = 0; i < buyList.size(); i++) {
             GoodsBean infoBean = buyList.get(i);
             msg = infoBean.getTitle() + ":" + infoBean.getBuycount();
-            Log.i("lsh", "printBuyList: goods=~~~" + msg);
+            Log.i(TAG, "printBuyList: " + msg);
         }
     }
 }
