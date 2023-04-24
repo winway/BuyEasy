@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/item_lv_goods_list_picture_iv"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/button_goods_list_buy_background"
+        android:background="@drawable/button_buy_background"
         android:text="购买"
         android:textColor="@color/white"
         android:textStyle="bold" />

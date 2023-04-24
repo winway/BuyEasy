@@ -7,7 +7,7 @@ public class GoodsBean {
     private String kind;    //种类
     private int count;     //库存
     private double price;   //价格
-    private int buycount = 0;  //购买数量
+    private int buyCount = 1;  //购买数量
 
     public GoodsBean() {
     }
@@ -18,7 +18,7 @@ public class GoodsBean {
         this.kind = kind;
         this.count = count;
         this.price = price;
-        this.buycount = buycount;
+        this.buyCount = buycount;
     }
 
     public GoodsBean(String pic, String title, String kind, int count, double price) {
@@ -35,12 +35,12 @@ public class GoodsBean {
         return ib;
     }
 
-    public int getBuycount() {
-        return buycount;
+    public int getBuyCount() {
+        return buyCount;
     }
 
-    public void setBuycount(int buycount) {
-        this.buycount = buycount;
+    public void setBuyCount(int buyCount) {
+        this.buyCount = buyCount;
     }
 
     public String getPic() {

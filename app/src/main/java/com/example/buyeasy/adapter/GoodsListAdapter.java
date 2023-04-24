@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.buyeasy.CartActivity;
 import com.example.buyeasy.R;
 import com.example.buyeasy.bean.GoodsBean;
 import com.example.buyeasy.bean.GoodsData;
@@ -27,10 +28,17 @@ import java.util.List;
 public class GoodsListAdapter extends BaseAdapter {
     private Context mContext;
     private List<GoodsBean> mData;
+    private boolean isCart = false;
 
     public GoodsListAdapter(Context context, List<GoodsBean> data) {
         mContext = context;
         mData = data;
+    }
+
+    public GoodsListAdapter(Context context, List<GoodsBean> data, boolean isCart) {
+        mContext = context;
+        mData = data;
+        this.isCart = isCart;
     }
 
     @Override
@@ -60,24 +68,49 @@ public class GoodsListAdapter extends BaseAdapter {
         }
 
         GoodsBean goodsBean = mData.get(i);
+
         holder.mNameTV.setText(goodsBean.getTitle());
         holder.mKindTV.setText(goodsBean.getKind());
         holder.mPriceTV.setText("¥ " + goodsBean.getPrice());
         Picasso.with(mContext).load(goodsBean.getPic()).into(holder.mPictureIV);
         holder.mQuantityQMV.setStock(goodsBean.getCount());
+        holder.mQuantityQMV.setQuantityETText("" + goodsBean.getBuyCount());
 
         ViewHolder finalHolder = holder;
-        holder.mBuyBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int quantity = finalHolder.mQuantityQMV.getQuantity();
-                GoodsBean goodsBeanCopy = GoodsBean.copy(goodsBean);
-                goodsBeanCopy.setBuycount(quantity);
-                GoodsData.addGoodsToBuyList(goodsBeanCopy);
+        if (isCart) {
+            holder.mQuantityQMV.setOnQuantityChangeListener(new QuantityModifierView.OnQuantityChangeListener() {
+                @Override
+                public void onQuantityChange(int quantity) {
+                    GoodsData.printBuyList();
+                    goodsBean.setBuyCount(quantity);
+                    GoodsData.printBuyList();
+                    ((CartActivity) mContext).refreshTotalMoney();
+                }
+            });
 
-                GoodsData.printBuyList();
-            }
-        });
+            holder.mDeleteIV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    GoodsData.printBuyList();
+                    mData.remove(goodsBean);
+                    GoodsData.printBuyList();
+                    notifyDataSetChanged();
+                    ((CartActivity) mContext).refreshTotalMoney();
+                }
+            });
+        } else {
+            holder.mBuyBTN.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int quantity = finalHolder.mQuantityQMV.getQuantity();
+                    GoodsBean goodsBeanCopy = GoodsBean.copy(goodsBean);
+                    goodsBeanCopy.setBuyCount(quantity);
+                    GoodsData.addGoodsToBuyList(goodsBeanCopy);
+
+                    GoodsData.printBuyList();
+                }
+            });
+        }
 
         return view;
     }
@@ -99,6 +132,14 @@ public class GoodsListAdapter extends BaseAdapter {
             mQuantityQMV = view.findViewById(R.id.item_lv_goods_list_quantity_qmv);
             mDeleteIV = view.findViewById(R.id.item_lv_goods_list_delete_iv);
             mBuyBTN = view.findViewById(R.id.item_lv_goods_list_buy_btn);
+
+            if (isCart) {
+                mDeleteIV.setVisibility(View.VISIBLE);
+                mBuyBTN.setVisibility(View.GONE);
+            } else {
+                mDeleteIV.setVisibility(View.GONE);
+                mBuyBTN.setVisibility(View.VISIBLE);
+            }
         }
     }
 }

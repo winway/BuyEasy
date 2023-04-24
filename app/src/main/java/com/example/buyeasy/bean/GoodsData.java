@@ -70,8 +70,8 @@ public class GoodsData {
         for (int i = 0; i < buyList.size(); i++) {
             GoodsBean buyBean = buyList.get(i);
             if (buyBean.getTitle().equals(bean.getTitle())) {
-                int buyCount = bean.getBuycount();
-                buyBean.setBuycount(buyBean.getBuycount() + buyCount);
+                int buyCount = bean.getBuyCount();
+                buyBean.setBuyCount(buyBean.getBuyCount() + buyCount);
                 flag = false;
                 break;
             }
@@ -86,8 +86,18 @@ public class GoodsData {
         String msg = "";
         for (int i = 0; i < buyList.size(); i++) {
             GoodsBean infoBean = buyList.get(i);
-            msg = infoBean.getTitle() + ":" + infoBean.getBuycount();
+            msg = infoBean.getTitle() + ":" + infoBean.getBuyCount();
             Log.i(TAG, "printBuyList: " + msg);
         }
+    }
+
+    public static double calculateTotalMoney() {
+        double total = 0.0;
+        for (int i = 0; i < buyList.size(); i++) {
+            GoodsBean goodsBean = buyList.get(i);
+            total += goodsBean.getBuyCount() * goodsBean.getPrice();
+        }
+
+        return total;
     }
 }

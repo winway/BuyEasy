@@ -51,6 +51,10 @@ public class QuantityModifierView extends LinearLayout implements View.OnClickLi
         mStock = stock;
     }
 
+    public void setQuantityETText(String s) {
+        mQuantityET.setText(s);
+    }
+
     public int getQuantity() {
         String input = mQuantityET.getText().toString().trim();
         int quantity;

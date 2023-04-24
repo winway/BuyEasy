@@ -5,4 +5,5 @@
     <string name="price_order">价格排序</string>
     <string name="show_list">列表展示</string>
     <string name="show_grid">网格展示</string>
+    <string name="buy">购买</string>
 </resources>

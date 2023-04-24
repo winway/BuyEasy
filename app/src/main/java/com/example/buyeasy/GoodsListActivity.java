@@ -144,7 +144,7 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         mTitleTV.setOnRightImageClickListener(new TitleView.OnImageClickListener() {
             @Override
             public void onClick() {
-
+                startActivity(new Intent(GoodsListActivity.this, CartActivity.class));
             }
         });
     }

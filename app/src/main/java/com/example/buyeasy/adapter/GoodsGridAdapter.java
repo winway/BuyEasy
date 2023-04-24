@@ -61,10 +61,12 @@ public class GoodsGridAdapter extends BaseAdapter {
         }
 
         GoodsBean goodsBean = mData.get(i);
+
         holder.mNameTV.setText(goodsBean.getTitle());
         holder.mPriceTV.setText("¥ " + goodsBean.getPrice());
         Picasso.with(mContext).load(goodsBean.getPic()).into(holder.mPictureIV);
         holder.mQuantityQMV.setStock(goodsBean.getCount());
+        holder.mQuantityQMV.setQuantityETText("" + goodsBean.getBuyCount());
 
         ViewHolder finalHolder = holder;
         holder.mBuyBTN.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +74,7 @@ public class GoodsGridAdapter extends BaseAdapter {
             public void onClick(View view) {
                 int quantity = finalHolder.mQuantityQMV.getQuantity();
                 GoodsBean goodsBeanCopy = GoodsBean.copy(goodsBean);
-                goodsBeanCopy.setBuycount(quantity);
+                goodsBeanCopy.setBuyCount(quantity);
                 GoodsData.addGoodsToBuyList(goodsBeanCopy);
 
                 GoodsData.printBuyList();

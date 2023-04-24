@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CartActivity">
+
+    <com.example.buyeasy.view.TitleView
+        android:id="@+id/cart_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ListView
+        android:id="@+id/cart_goolds_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/cart_line_iv"
+        android:layout_below="@id/cart_title_tv" />
+
+    <ImageView
+        android:id="@+id/cart_line_iv"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/cart_summary_ll"
+        android:background="@color/black" />
+
+    <LinearLayout
+        android:id="@+id/cart_summary_ll"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="总计："
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/cart_total_money_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="¥ 100" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cart_buy_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_buy_background"
+            android:text="@string/buy"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</RelativeLayout>
