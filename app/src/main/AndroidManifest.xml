@@ -16,6 +16,12 @@
         android:theme="@style/Theme.BuyEasy"
         tools:targetApi="31">
         <activity
+            android:name=".ReceiverInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PayActivity"
+            android:exported="false" />
+        <activity
             android:name=".CartActivity"
             android:exported="false" />
         <activity

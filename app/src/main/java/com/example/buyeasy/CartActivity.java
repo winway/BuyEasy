@@ -2,6 +2,7 @@ package com.example.buyeasy;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -13,7 +14,6 @@ import com.example.buyeasy.bean.GoodsBean;
 import com.example.buyeasy.bean.GoodsData;
 import com.example.buyeasy.view.TitleView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
@@ -24,6 +24,8 @@ public class CartActivity extends AppCompatActivity {
 
     private GoodsListAdapter mGoodsListAdapter;
     private List<GoodsBean> mGoodsListAdapterData;
+
+    private double mTotalMoney;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,8 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public void refreshTotalMoney() {
-        mTotalMoneyTV.setText("" + GoodsData.calculateTotalMoney());
+        mTotalMoney = GoodsData.calculateTotalMoney();
+        mTotalMoneyTV.setText("" + mTotalMoney);
     }
 
     private void initGoodsListAdapter() {
@@ -55,6 +58,13 @@ public class CartActivity extends AppCompatActivity {
         mBuyBTN = findViewById(R.id.cart_buy_btn);
 
         setupTitleView();
+
+        mBuyBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(PayActivity.newIntent(CartActivity.this, mTotalMoney));
+            }
+        });
     }
 
     private void setupTitleView() {

@@ -27,7 +27,7 @@ import java.util.List;
 
 public class GoodsListActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String ARG_KIND = "kind";
+    private static final String EXTRA_KIND = "kind";
 
     private TitleView mTitleTV;
     private Button mSearchBTN;
@@ -45,7 +45,7 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
 
     public static Intent newIntent(Context context, String kind) {
         Intent intent = new Intent(context, GoodsListActivity.class);
-        intent.putExtra(ARG_KIND, kind);
+        intent.putExtra(EXTRA_KIND, kind);
         return intent;
     }
 
@@ -54,7 +54,7 @@ public class GoodsListActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_list);
 
-        mKind = getIntent().getStringExtra(ARG_KIND);
+        mKind = getIntent().getStringExtra(EXTRA_KIND);
 
         initView();
 
