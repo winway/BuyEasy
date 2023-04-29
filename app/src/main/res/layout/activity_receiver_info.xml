@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ReceiverInfoActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.example.buyeasy.view.TitleView
-        android:id="@+id/receiver_info_title_tv"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ReceiverInfoActivity">
 
-    <ListView
-        android:id="@+id/receiver_info_lv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@color/grey"
-        android:dividerHeight="3dp" />
-</LinearLayout>
+        <com.example.buyeasy.view.TitleView
+            android:id="@+id/receiver_info_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ListView
+            android:id="@+id/receiver_info_lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/grey"
+            android:dividerHeight="3dp" />
+    </LinearLayout>
+</layout>
