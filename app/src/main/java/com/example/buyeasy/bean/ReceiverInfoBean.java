@@ -21,6 +21,13 @@ public class ReceiverInfoBean implements Serializable {
     public ReceiverInfoBean() {
     }
 
+    public ReceiverInfoBean(String name, String phone, String city, String street) {
+        this.name = name;
+        this.phone = phone;
+        this.city = city;
+        this.street = street;
+    }
+
     public ReceiverInfoBean(int id, String name, String phone, String city, String street) {
         this.id = id;
         this.name = name;

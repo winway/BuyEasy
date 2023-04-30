@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/dialog_receiver_info_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="添加收货地址" />
+
+        <ImageView
+            android:id="@+id/dialog_receiver_info_close_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@mipmap/icon_close" />
+
+        <TextView
+            android:id="@+id/dialog_receiver_info_line1_tv"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/dialog_receiver_info_title_tv"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/grey" />
+
+        <TextView
+            android:id="@+id/dialog_receiver_info_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dialog_receiver_info_line1_tv"
+            android:text="收货人："
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/dialog_receiver_info_name_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/dialog_receiver_info_name_tv"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/dialog_receiver_info_name_tv"
+            android:background="@null"
+            android:hint="收货人姓名"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/dialog_receiver_info_line2_tv"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/dialog_receiver_info_name_tv"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/grey" />
+
+        <TextView
+            android:id="@+id/dialog_receiver_info_phone_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dialog_receiver_info_line2_tv"
+            android:text="手机号："
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/dialog_receiver_info_phone_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/dialog_receiver_info_phone_tv"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/dialog_receiver_info_phone_tv"
+            android:background="@null"
+            android:hint="手机号"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/dialog_receiver_info_line3_tv"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/dialog_receiver_info_phone_tv"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/grey" />
+
+        <TextView
+            android:id="@+id/dialog_receiver_info_city_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dialog_receiver_info_line3_tv"
+            android:text="城    市："
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/dialog_receiver_info_city_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/dialog_receiver_info_city_tv"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/dialog_receiver_info_city_tv"
+            android:background="@null"
+            android:hint="城市"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/dialog_receiver_info_line4_tv"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/dialog_receiver_info_city_tv"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/grey" />
+
+        <TextView
+            android:id="@+id/dialog_receiver_info_street_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dialog_receiver_info_line4_tv"
+            android:text="街    道："
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/dialog_receiver_info_street_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/dialog_receiver_info_street_tv"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/dialog_receiver_info_street_tv"
+            android:background="@null"
+            android:hint="街道"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/dialog_receiver_info_line5_tv"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/dialog_receiver_info_street_tv"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/grey" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/dialog_receiver_info_add_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dialog_receiver_info_line5_tv"
+            android:background="@drawable/button_buy_background"
+            android:text="保存"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+</layout>

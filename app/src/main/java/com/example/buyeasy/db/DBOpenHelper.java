@@ -32,10 +32,10 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                 "city varchar(64), street varchar(128))";
         sqLiteDatabase.execSQL(sql);
 
-        sqLiteDatabase.execSQL("insert into receiver_info values (1, 'aa1', '1111', 'bb1', 'cc1')");
-        sqLiteDatabase.execSQL("insert into receiver_info values (2, 'aa2', '2222', 'bb2', 'cc2')");
-        sqLiteDatabase.execSQL("insert into receiver_info values (3, 'aa3', '3333', 'bb3', 'cc3')");
-        sqLiteDatabase.execSQL("insert into receiver_info values (4, 'aa4', '4444', 'bb4', 'cc4')");
+//        sqLiteDatabase.execSQL("insert into receiver_info values (1, 'aa1', '1111', 'bb1', 'cc1')");
+//        sqLiteDatabase.execSQL("insert into receiver_info values (2, 'aa2', '2222', 'bb2', 'cc2')");
+//        sqLiteDatabase.execSQL("insert into receiver_info values (3, 'aa3', '3333', 'bb3', 'cc3')");
+//        sqLiteDatabase.execSQL("insert into receiver_info values (4, 'aa4', '4444', 'bb4', 'cc4')");
     }
 
     @Override

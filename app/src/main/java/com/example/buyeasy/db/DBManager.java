@@ -1,5 +1,6 @@
 package com.example.buyeasy.db;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -40,5 +41,29 @@ public class DBManager {
         }
 
         return beanList;
+    }
+
+    public static boolean isExist(ReceiverInfoBean infoBean) {
+        String sql = "select * from receiver_info where name='" + infoBean.getName() + "' and " +
+                "phone='" + infoBean.getPhone() + "' and " +
+                "city='" + infoBean.getCity() + "' and " +
+                "street='" + infoBean.getStreet() + "'";
+        Cursor cursor = sDatabase.rawQuery(sql, null);
+        int count = cursor.getCount();
+        if (count > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public static long add(ReceiverInfoBean infoBean) {
+        ContentValues values = new ContentValues();
+        values.put("name", infoBean.getName());
+        values.put("phone", infoBean.getPhone());
+        values.put("city", infoBean.getCity());
+        values.put("street", infoBean.getStreet());
+
+        long l = sDatabase.insert("receiver_info", null, values);
+        return l;
     }
 }
