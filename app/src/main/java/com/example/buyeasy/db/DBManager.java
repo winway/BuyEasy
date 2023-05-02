@@ -66,4 +66,15 @@ public class DBManager {
         long l = sDatabase.insert("receiver_info", null, values);
         return l;
     }
+
+    public static int updateById(ReceiverInfoBean infoBean) {
+        ContentValues values = new ContentValues();
+        values.put("name", infoBean.getName());
+        values.put("phone", infoBean.getPhone());
+        values.put("city", infoBean.getCity());
+        values.put("street", infoBean.getStreet());
+
+        int id = sDatabase.update("receiver_info", values, "id=" + infoBean.getId(), null);
+        return id;
+    }
 }

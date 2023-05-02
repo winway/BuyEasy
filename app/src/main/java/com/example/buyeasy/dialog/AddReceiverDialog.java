@@ -24,6 +24,8 @@ public class AddReceiverDialog extends Dialog implements View.OnClickListener {
 
     private DialogReceiverInfoBinding mBinding;
 
+    private ReceiverInfoBean mOldBean;
+
     private OnSaveReceiverInfoListener mOnSaveReceiverInfoListener;
 
     public AddReceiverDialog(@NonNull Context context) {
@@ -39,6 +41,7 @@ public class AddReceiverDialog extends Dialog implements View.OnClickListener {
     }
 
     public void loadData(ReceiverInfoBean receiverInfoBean) {
+        mOldBean = receiverInfoBean;
         mBinding.dialogReceiverInfoNameEt.setText(receiverInfoBean.getName());
         mBinding.dialogReceiverInfoPhoneEt.setText(receiverInfoBean.getPhone());
         mBinding.dialogReceiverInfoCityEt.setText(receiverInfoBean.getCity());
@@ -59,10 +62,21 @@ public class AddReceiverDialog extends Dialog implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.dialog_receiver_info_add_btn:
-                ReceiverInfoBean receiverInfoBean = validateInput();
-                if (receiverInfoBean != null) {
-                    if (mOnSaveReceiverInfoListener != null) {
-                        mOnSaveReceiverInfoListener.onSave(receiverInfoBean);
+                ReceiverInfoBean newBean = validateInput();
+                if (newBean != null) {
+                    if (mOldBean == null) {
+                        if (mOnSaveReceiverInfoListener != null) {
+                            mOnSaveReceiverInfoListener.onSave(newBean);
+                        }
+                    } else {
+                        if (mOldBean.equals(newBean)) {
+                            Toast.makeText(getContext(), "信息未更改", Toast.LENGTH_SHORT).show();
+                        } else {
+                            newBean.setId(mOldBean.getId());
+                            if (mOnSaveReceiverInfoListener != null) {
+                                mOnSaveReceiverInfoListener.onSave(newBean);
+                            }
+                        }
                     }
                     cancel();
                 }

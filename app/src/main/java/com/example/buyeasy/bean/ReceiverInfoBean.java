@@ -1,6 +1,7 @@
 package com.example.buyeasy.bean;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * @PackageName: com.example.buyeasy.bean
@@ -44,6 +45,27 @@ public class ReceiverInfoBean implements Serializable {
         this.street = street;
         this.isDefault = isDefault;
         this.isTop = isTop;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ReceiverInfoBean that = (ReceiverInfoBean) o;
+        return Objects.equals(name, that.name) && Objects.equals(phone, that.phone) && Objects.equals(city, that.city) && Objects.equals(street, that.street);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, phone, city, street);
+    }
+
+    public void copyDataFromObject(ReceiverInfoBean o) {
+        this.setId(o.getId());
+        this.setName(o.getName());
+        this.setPhone(o.getPhone());
+        this.setCity(o.getCity());
+        this.setStreet(o.getStreet());
     }
 
     public int getId() {

@@ -60,15 +60,17 @@ public class ReceiverInfoActivity extends AppCompatActivity {
     private void showAddReceiverDialog() {
         AddReceiverDialog dialog = new AddReceiverDialog(this);
         dialog.show();
+        dialog.setTitleText("添加收货地址");
         dialog.setOnSaveReceiverInfoListener(new AddReceiverDialog.OnSaveReceiverInfoListener() {
             @Override
             public void onSave(ReceiverInfoBean infoBean) {
                 if (DBManager.isExist(infoBean)) {
                     Toast.makeText(ReceiverInfoActivity.this, "信息已存在", Toast.LENGTH_SHORT).show();
                 } else {
-                    long cnt = DBManager.add(infoBean);
-                    if (cnt > 0) {
+                    long id = DBManager.add(infoBean);
+                    if (id > 0) {
                         Toast.makeText(ReceiverInfoActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
+                        infoBean.setId((int) id);
                         mReceiverListAdapterData.add(infoBean);
                         mReceiverListAdapter.notifyDataSetChanged();
                     }

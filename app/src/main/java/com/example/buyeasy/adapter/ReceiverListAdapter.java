@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import com.example.buyeasy.R;
 import com.example.buyeasy.bean.ReceiverInfoBean;
 import com.example.buyeasy.databinding.ItemLvReceiverInfoBinding;
+import com.example.buyeasy.db.DBManager;
+import com.example.buyeasy.dialog.AddReceiverDialog;
 
 import java.util.List;
 
@@ -60,6 +62,24 @@ public class ReceiverListAdapter extends BaseAdapter {
         holder.mBinding.itemLvReceiverInfoPhoneTv.setText(receiverInfoBean.getPhone());
         holder.mBinding.itemLvReceiverInfoCityTv.setText(receiverInfoBean.getCity());
         holder.mBinding.itemLvReceiverInfoStreetTv.setText(receiverInfoBean.getStreet());
+
+        holder.mBinding.itemLvReceiverInfoModifyTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AddReceiverDialog dialog = new AddReceiverDialog(mContext);
+                dialog.show();
+                dialog.setTitleText("修改收货地址");
+                dialog.loadData(receiverInfoBean);
+                dialog.setOnSaveReceiverInfoListener(new AddReceiverDialog.OnSaveReceiverInfoListener() {
+                    @Override
+                    public void onSave(ReceiverInfoBean infoBean) {
+                        DBManager.updateById(infoBean);
+                        receiverInfoBean.copyDataFromObject(infoBean);
+                        notifyDataSetChanged();
+                    }
+                });
+            }
+        });
 
         return view;
     }
