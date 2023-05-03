@@ -68,6 +68,10 @@ public class ReceiverInfoBean implements Serializable {
         this.setStreet(o.getStreet());
     }
 
+    public String getClipData() {
+        return String.format("姓名：%s\n电话：%s\n地址：%s%s", name, phone, city, street);
+    }
+
     public int getId() {
         return id;
     }

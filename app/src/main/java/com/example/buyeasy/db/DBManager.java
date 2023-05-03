@@ -77,4 +77,9 @@ public class DBManager {
         int id = sDatabase.update("receiver_info", values, "id=" + infoBean.getId(), null);
         return id;
     }
+
+    public static int deleteById(int id) {
+        int i = sDatabase.delete("receiver_info", "id=" + id, null);
+        return i;
+    }
 }

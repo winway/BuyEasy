@@ -1,6 +1,9 @@
 package com.example.buyeasy.adapter;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,7 @@ import com.example.buyeasy.bean.ReceiverInfoBean;
 import com.example.buyeasy.databinding.ItemLvReceiverInfoBinding;
 import com.example.buyeasy.db.DBManager;
 import com.example.buyeasy.dialog.AddReceiverDialog;
+import com.example.buyeasy.utils.DialogUtils;
 
 import java.util.List;
 
@@ -81,7 +85,42 @@ public class ReceiverListAdapter extends BaseAdapter {
             }
         });
 
+        holder.mBinding.itemLvReceiverInfoDeleteTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogUtils.showCommonAlertDialog(mContext, "提示信息", "确认删除吗？",
+                        "取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        },
+                        "确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                DBManager.deleteById(receiverInfoBean.getId());
+                                mData.remove(receiverInfoBean);
+                                notifyDataSetChanged();
+                                dialogInterface.cancel();
+                            }
+                        });
+            }
+        });
+
+        holder.mBinding.itemLvReceiverInfoCopyTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                copyToClipBoard(receiverInfoBean.getClipData());
+            }
+        });
+
         return view;
+    }
+
+    private void copyToClipBoard(String content) {
+        ClipboardManager manager = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData data = ClipData.newPlainText("receiver", content);
+        manager.setPrimaryClip(data);
     }
 
     class ViewHolder {
