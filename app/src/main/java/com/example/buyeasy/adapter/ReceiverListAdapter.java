@@ -114,6 +114,15 @@ public class ReceiverListAdapter extends BaseAdapter {
             }
         });
 
+        holder.mBinding.itemLvReceiverInfoTopTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mData.remove(receiverInfoBean);
+                mData.add(0, receiverInfoBean);
+                notifyDataSetChanged();
+            }
+        });
+
         return view;
     }
 

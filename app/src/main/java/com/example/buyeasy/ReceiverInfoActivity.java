@@ -1,6 +1,7 @@
 package com.example.buyeasy;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -29,11 +30,15 @@ public class ReceiverInfoActivity extends AppCompatActivity {
     private ReceiverListAdapter mReceiverListAdapter;
     private List<ReceiverInfoBean> mReceiverListAdapterData;
 
+    private SharedPreferences mPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = ActivityReceiverInfoBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mPreferences = getSharedPreferences("receiver_info", MODE_PRIVATE);
 
         setupTitleView();
 
@@ -42,6 +47,15 @@ public class ReceiverInfoActivity extends AppCompatActivity {
         initReceiverListAdapter();
 
         refreshReceiverListAdapter();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        int topId = mReceiverListAdapterData.get(0).getId();
+        SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putInt("top", topId);
+        editor.apply();
     }
 
     private void addReceiverListFooter() {
@@ -83,6 +97,19 @@ public class ReceiverInfoActivity extends AppCompatActivity {
         mReceiverListAdapterData.clear();
         List<ReceiverInfoBean> beanList = DBManager.queryAll();
         mReceiverListAdapterData.addAll(beanList);
+
+        int topId = mPreferences.getInt("top", -1);
+        if (topId >= 0) {
+            for (int i = 0; i < mReceiverListAdapterData.size(); i++) {
+                ReceiverInfoBean bean = mReceiverListAdapterData.get(i);
+                if (bean.getId() == topId) {
+                    mReceiverListAdapterData.remove(bean);
+                    mReceiverListAdapterData.add(0, bean);
+                    break;
+                }
+            }
+        }
+
         mReceiverListAdapter.notifyDataSetChanged();
     }
 
