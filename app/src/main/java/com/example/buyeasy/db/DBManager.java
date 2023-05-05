@@ -82,4 +82,18 @@ public class DBManager {
         int i = sDatabase.delete("receiver_info", "id=" + id, null);
         return i;
     }
+
+    public static ReceiverInfoBean queryByID(int defaultId) {
+        Cursor cursor = sDatabase.query("receiver_info", null, "id=" + defaultId, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            int id = cursor.getInt(cursor.getColumnIndex("id"));
+            String name = cursor.getString(cursor.getColumnIndex("name"));
+            String phone = cursor.getString(cursor.getColumnIndex("phone"));
+            String city = cursor.getString(cursor.getColumnIndex("city"));
+            String street = cursor.getString(cursor.getColumnIndex("street"));
+            return new ReceiverInfoBean(id, name, phone, city, street);
+        }
+
+        return null;
+    }
 }

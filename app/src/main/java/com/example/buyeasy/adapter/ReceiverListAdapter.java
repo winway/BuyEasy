@@ -29,9 +29,15 @@ public class ReceiverListAdapter extends BaseAdapter {
     private Context mContext;
     private List<ReceiverInfoBean> mData;
 
+    private int mDefaultId = -1;
+
     public ReceiverListAdapter(Context context, List<ReceiverInfoBean> data) {
         mContext = context;
         mData = data;
+    }
+
+    public int getDefaultId() {
+        return mDefaultId;
     }
 
     @Override
@@ -66,6 +72,25 @@ public class ReceiverListAdapter extends BaseAdapter {
         holder.mBinding.itemLvReceiverInfoPhoneTv.setText(receiverInfoBean.getPhone());
         holder.mBinding.itemLvReceiverInfoCityTv.setText(receiverInfoBean.getCity());
         holder.mBinding.itemLvReceiverInfoStreetTv.setText(receiverInfoBean.getStreet());
+
+        holder.mBinding.itemLvReceiverInfoDefaultRb.setChecked(receiverInfoBean.isDefault());
+        if (receiverInfoBean.isDefault()) {
+            mDefaultId = receiverInfoBean.getId();
+        }
+
+        holder.mBinding.itemLvReceiverInfoDefaultRb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!receiverInfoBean.isDefault()) {
+                    for (int j = 0; j < mData.size(); j++) {
+                        mData.get(j).setDefault(false);
+                    }
+                    receiverInfoBean.setDefault(true);
+                    mDefaultId = receiverInfoBean.getId();
+                    notifyDataSetChanged();
+                }
+            }
+        });
 
         holder.mBinding.itemLvReceiverInfoModifyTv.setOnClickListener(new View.OnClickListener() {
             @Override

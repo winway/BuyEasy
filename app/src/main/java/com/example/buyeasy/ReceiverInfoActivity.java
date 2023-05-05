@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -24,7 +25,7 @@ import java.util.List;
 public class ReceiverInfoActivity extends AppCompatActivity {
 
     public static final String EXTRA_RECEIVER_INFO = "receiver_info";
-
+    private static final String TAG = "ReceiverInfoActivity";
     private ActivityReceiverInfoBinding mBinding;
 
     private ReceiverListAdapter mReceiverListAdapter;
@@ -53,9 +54,13 @@ public class ReceiverInfoActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         int topId = mReceiverListAdapterData.get(0).getId();
+        int defaultId = mReceiverListAdapter.getDefaultId();
         SharedPreferences.Editor editor = mPreferences.edit();
         editor.putInt("top", topId);
+        editor.putInt("default", defaultId);
         editor.apply();
+
+        Log.i(TAG, "onDestroy: " + topId + "," + defaultId);
     }
 
     private void addReceiverListFooter() {
@@ -99,13 +104,17 @@ public class ReceiverInfoActivity extends AppCompatActivity {
         mReceiverListAdapterData.addAll(beanList);
 
         int topId = mPreferences.getInt("top", -1);
-        if (topId >= 0) {
+        int defaultId = mPreferences.getInt("default", -1);
+        if (topId >= 0 || defaultId >= 0) {
             for (int i = 0; i < mReceiverListAdapterData.size(); i++) {
                 ReceiverInfoBean bean = mReceiverListAdapterData.get(i);
                 if (bean.getId() == topId) {
                     mReceiverListAdapterData.remove(bean);
                     mReceiverListAdapterData.add(0, bean);
-                    break;
+                }
+
+                if (bean.getId() == defaultId) {
+                    bean.setDefault(true);
                 }
             }
         }
